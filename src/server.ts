@@ -2,14 +2,15 @@ import express from "express";
 import swaggerUi from "swagger-ui-express";
 
 import "reflect-metadata";
-import "./database";
-
+import { connectDataBase } from "./database";
 import { router } from "./routes";
 import swaggerFile from "./swagger.json";
 
 const app = express();
 
 const port = process.env.PORT || 3333;
+
+connectDataBase();
 
 app.use(express.json());
 

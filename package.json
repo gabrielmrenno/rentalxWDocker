@@ -4,11 +4,10 @@
    "description": "",
    "main": "index.js",
    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
-      "dev2": "nodemon src/server.ts",
-      "start": "ts-node src/index.ts",
-      "typeorm": "typeorm-ts-node-commonjs"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+        "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
+        "migration:run": "ts-node-dev ./node_modules/typeorm/cli.js migration:run -d src/ormconfig.ts"
    },
    "author": "",
    "license": "ISC",

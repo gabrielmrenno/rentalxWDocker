@@ -1,5 +1,12 @@
-import { AppDataSource } from "../data-source";
+import "reflect-metadata";
+import { AppDataSource } from "../ormconfig";
 
-AppDataSource.initialize()
-    .then()
-    .catch((error) => console.log(error));
+export async function connectDataBase() {
+    await AppDataSource.initialize()
+        .then(() => {
+            console.log("conectado");
+        })
+        .catch((error) => {
+            return console.log(error);
+        });
+}

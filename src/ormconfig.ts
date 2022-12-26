@@ -1,17 +1,13 @@
 import "reflect-metadata";
-
 import { DataSource } from "typeorm";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: "localhost",
+    host: "db",
     port: 5432,
     username: "docker",
-    password: "ignite",
+    password: "ignite-123",
     database: "rentx",
-    synchronize: true,
-    logging: false,
-    entities: [],
-    migrations: [],
-    subscribers: [],
+    migrations: ["./src/database/migrations/*.ts"],
+    migrationsTableName: "migrations",
 });
