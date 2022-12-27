@@ -15,16 +15,14 @@ const upload = multer({
     dest: "./temp",
 });
 
-categoriesRoutes.get("/", () => {
-    return listCategoryController.handle;
-});
+categoriesRoutes.get("/", listCategoryController.handle);
 
-categoriesRoutes.post("/", () => {
-    return createCategoryController.handle;
-});
+categoriesRoutes.post("/", createCategoryController.handle);
 
-categoriesRoutes.post("/import", upload.single("file"), () => {
-    return importCategoryController.handle;
-});
+categoriesRoutes.post(
+    "/import",
+    upload.single("file"),
+    importCategoryController.handle
+);
 
 export { categoriesRoutes };
