@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
 
-import { AppDataSource } from "../../../../ormconfig";
+import { AppDataSource } from "../../../../database/ormconfig";
 import { Category } from "../../entities/category";
 import {
     ICategoriesRepository,
@@ -25,15 +25,12 @@ export class CategoriesRepository implements ICategoriesRepository {
 
     async list(): Promise<Category[]> {
         const categories = await this.repository.find();
+
         return categories;
     }
 
     async findByName(name: string): Promise<Category | null> {
-        const category = await this.repository.findOne({
-            where: {
-                name,
-            },
-        });
+        const category = await this.repository.findOneBy({ name });
 
         return category;
     }
