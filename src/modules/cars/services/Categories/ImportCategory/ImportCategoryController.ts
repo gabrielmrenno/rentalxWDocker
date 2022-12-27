@@ -4,13 +4,13 @@ import { ImportCategoryService } from "./ImportCategoryService";
 
 export class ImportCategoryController {
     constructor(private importCategoryService: ImportCategoryService) {}
-    handle(request: Request, response: Response): Response {
+    async handle(request: Request, response: Response): Promise<Response> {
         const { file } = request;
 
         if (!file) {
             return response.json("Error on import file");
         }
-        this.importCategoryService.execute(file);
+        await this.importCategoryService.execute(file);
         return response.send();
     }
 }

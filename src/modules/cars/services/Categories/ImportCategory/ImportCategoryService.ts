@@ -44,11 +44,13 @@ export class ImportCategoryService {
     async execute(file: Express.Multer.File): Promise<void> {
         const categories = await this.loadCategories(file);
         // eslint-disable-next-line array-callback-return
-        categories.map((category): void => {
+        categories.map(async (category): Promise<void> => {
             const { name, description } = category;
-            const nameAlreadyUsed = this.categoriesRepository.findByName(name);
+            const nameAlreadyUsed = await this.categoriesRepository.findByName(
+                name
+            );
             if (!nameAlreadyUsed) {
-                this.categoriesRepository.create({ name, description });
+                await this.categoriesRepository.create({ name, description });
             }
         });
     }
