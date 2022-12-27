@@ -1,10 +1,16 @@
+import { inject, injectable } from "tsyringe";
+
 import {
     ICreateSpecificationDTO,
     ISpecificationsRepository,
 } from "../../../repositories/ISpecificationsRepository";
 
+@injectable()
 export class CreateSpecificationService {
-    constructor(private specificationsRepository: ISpecificationsRepository) {}
+    constructor(
+        @inject("SpecificationsRepository")
+        private specificationsRepository: ISpecificationsRepository
+    ) {}
     async execute({
         name,
         description,
