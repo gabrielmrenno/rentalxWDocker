@@ -4,6 +4,7 @@ import swaggerUi from "swagger-ui-express";
 import "reflect-metadata";
 
 import { connectDatabase } from "./database/ormconfig";
+import "./shared/container";
 import { router } from "./routes";
 import swaggerFile from "./swagger.json";
 
