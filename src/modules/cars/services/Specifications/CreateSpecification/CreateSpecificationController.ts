@@ -15,10 +15,9 @@ export class CreateSpecificationController {
                 name,
                 description,
             });
-
             return response.status(201).send();
         } catch (error) {
-            return response.status(401).send();
+            return response.send();
         }
     }
 }
