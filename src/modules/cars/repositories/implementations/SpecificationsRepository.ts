@@ -1,3 +1,6 @@
+import { Repository } from "typeorm";
+
+import { AppDataSource } from "../../../../database/ormconfig";
 import { Specification } from "../../entities/specification";
 import {
     ICreateSpecificationDTO,
@@ -5,40 +8,29 @@ import {
 } from "../ISpecificationsRepository";
 
 export class SpecificationRepository implements ISpecificationsRepository {
-    private specifications: Specification[];
+    private repository: Repository<Specification>;
 
-    // eslint-disable-next-line no-use-before-define
-    private static INSTANCE: SpecificationRepository;
-
-    private constructor() {
-        this.specifications = [];
+    constructor() {
+        this.repository = AppDataSource.getRepository(Specification);
     }
 
-    public static getInstance() {
-        if (!SpecificationRepository.INSTANCE) {
-            SpecificationRepository.INSTANCE = new SpecificationRepository();
-        }
-        return SpecificationRepository.INSTANCE;
-    }
-
-    create({ name, description }: ICreateSpecificationDTO): void {
-        const specification = new Specification();
-
-        Object.assign(specification, {
+    async create({
+        name,
+        description,
+    }: ICreateSpecificationDTO): Promise<void> {
+        const specification = this.repository.create({
             name,
             description,
-            created_at: new Date(),
         });
 
-        this.specifications.push(specification);
+        await this.repository.save(specification);
     }
-    list(): Specification[] {
-        return this.specifications;
+    async list(): Promise<Specification[]> {
+        const specifications = await this.repository.find();
+        return specifications;
     }
-    findByName(name: string): Specification | undefined {
-        const specification = this.specifications.find(
-            (specification) => specification.name === name
-        );
+    async findByName(name: string): Promise<Specification | null> {
+        const specification = await this.repository.findOneBy({ name });
 
         return specification;
     }

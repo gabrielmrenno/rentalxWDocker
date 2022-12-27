@@ -11,6 +11,6 @@ export class ImportCategoryController {
             return response.json("Error on import file");
         }
         await this.importCategoryService.execute(file);
-        return response.send();
+        return response.send("Success on import file");
     }
 }

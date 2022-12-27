@@ -1,10 +1,10 @@
-import { Specification } from "../../../modules/model/specification";
+import { Specification } from "../../../entities/specification";
 import { ISpecificationsRepository } from "../../../repositories/ISpecificationsRepository";
 
 export class ListSpecificationsService {
     constructor(private specificationRepository: ISpecificationsRepository) {}
-    execute(): Specification[] {
-        const specifications = this.specificationRepository.list();
+    async execute(): Promise<Specification[]> {
+        const specifications = await this.specificationRepository.list();
         return specifications;
     }
 }

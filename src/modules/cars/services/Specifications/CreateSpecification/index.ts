@@ -2,12 +2,13 @@ import { SpecificationRepository } from "../../../repositories/implementations/S
 import { CreateSpecificationController } from "./CreateSpecificationController";
 import { CreateSpecificationService } from "./CreateSpecificationService";
 
-const specificationRepository = SpecificationRepository.getInstance();
-const createSpecificationService = new CreateSpecificationService(
-    specificationRepository
-);
-const createSpecificationController = new CreateSpecificationController(
-    createSpecificationService
-);
-
-export { createSpecificationController };
+export default (): CreateSpecificationController => {
+    const specificationRepository = new SpecificationRepository();
+    const createSpecificationService = new CreateSpecificationService(
+        specificationRepository
+    );
+    const createSpecificationController = new CreateSpecificationController(
+        createSpecificationService
+    );
+    return createSpecificationController;
+};

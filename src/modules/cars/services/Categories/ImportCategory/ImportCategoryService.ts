@@ -49,7 +49,7 @@ export class ImportCategoryService {
             const nameAlreadyUsed = await this.categoriesRepository.findByName(
                 name
             );
-            if (!nameAlreadyUsed) {
+            if (nameAlreadyUsed === null) {
                 await this.categoriesRepository.create({ name, description });
             }
         });
