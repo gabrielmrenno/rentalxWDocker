@@ -10,14 +10,10 @@ export class CreateSpecificationController {
             CreateSpecificationService
         );
 
-        try {
-            await createSpecificationService.execute({
-                name,
-                description,
-            });
-            return response.status(201).send();
-        } catch (error) {
-            return response.send();
-        }
+        await createSpecificationService.execute({
+            name,
+            description,
+        });
+        return response.status(201).send();
     }
 }
