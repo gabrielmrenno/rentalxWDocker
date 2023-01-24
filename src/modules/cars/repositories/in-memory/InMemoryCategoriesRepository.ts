@@ -4,7 +4,7 @@ import {
     ICreateCategoryDTO,
 } from "../ICategoriesRepository";
 
-export class CategoriesRepositoryInMemory implements ICategoriesRepository {
+export class InMemoryCategoriesRepository implements ICategoriesRepository {
     // creating an array of categories = table of categories in memory
     categories: Category[] = [];
 
