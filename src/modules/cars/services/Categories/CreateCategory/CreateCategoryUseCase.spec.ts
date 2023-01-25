@@ -1,5 +1,6 @@
-import { AppError } from "../../../../../errors/AppError";
-import { InMemoryCategoriesRepository } from "../../../repositories/in-memory/InMemoryCategoriesRepository";
+import { AppError } from "@shared/errors/AppError";
+import { InMemoryCategoriesRepository } from "@modules/cars/repositories/in-memory/InMemoryCategoriesRepository";
+
 import { CreateCategoryService } from "./CreateCategoryService";
 
 let createCategoryService: CreateCategoryService;
